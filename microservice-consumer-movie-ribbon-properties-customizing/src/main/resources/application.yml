@@ -1,0 +1,19 @@
+server:
+  port: 8021
+spring:
+  application:
+    name: @project.name@
+eureka:
+  client:
+    healthcheck:
+      enable: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true # 显示ip
+    instance-id: ${spring.application.name}:${server.port}
+
+# http://cloud.spring.io/spring-cloud-static/Camden.SR7/#_customizing_the_ribbon_client_using_properties
+microserveice-provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

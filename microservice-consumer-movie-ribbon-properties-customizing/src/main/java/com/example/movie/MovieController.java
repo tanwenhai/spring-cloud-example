@@ -18,6 +18,9 @@ public class MovieController {
 
     @GetMapping("/user/{id}")
     public User findById(@PathVariable Long id) {
+        ServiceInstance serviceInstance = loadBalancerClient.choose("MICROSERVICE-PROVIDER-USER");
+
+        System.out.println(serviceInstance.getServiceId() + ":" + serviceInstance.getHost() + ":" + serviceInstance.getPort());
         return restTemplate.getForObject("http://MICROSERVICE-PROVIDER-USER/" + id, User.class);
     }
 

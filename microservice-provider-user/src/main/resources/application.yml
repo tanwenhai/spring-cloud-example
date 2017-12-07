@@ -1,6 +1,6 @@
 
 server:
-  port: 8003
+  port: 0
 spring:
   jpa:
     generate-ddl: false
@@ -12,7 +12,7 @@ spring:
     schema: classpath:schema.sql
     data: classpath:data.sql
   application:
-    name: microservice-simple-provider-user2
+    name: @project.name@
 logger:
   level:
     root: INFO
@@ -35,4 +35,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true # 显示ip
-    instance-id: ${spring.application.name}:${server.port}
+    instance-id: ${spring.application.name}:${random.uuid}
